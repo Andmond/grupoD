@@ -1,0 +1,96 @@
+body {
+    font-family: small-caps 100%/200% serif;
+    margin: 0;
+    padding: 0;
+    background-color: #b4b9b8;
+}
+
+header {
+    background-color: #333;
+    color: #4CAF50;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #444;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #7269e6;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+
+
+footer {
+    background-color: #333;
+    color: #fa4141;
+    text-align: center;
+    padding: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
+<h1>Minimercado Yireth </h1>
+<title>Cuadro de Usuario</title>
+<style>
+
+.user-box {
+    display: flex;
+    align-items: center;
+}
+
+.user-box img {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.user-box span {
+    font-size: 16px; 
+}
+
+form {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+
+label, input[type="date"], input[type="text"], input[type="submit"] {
+flex: 1;
+}
+
+input[type="submit"] {
+flex-basis: 100%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
