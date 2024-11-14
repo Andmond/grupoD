@@ -210,7 +210,30 @@ function nuevo_producto (){
 
 
 
+function eliminar_Productos (id ){
+    console.log("llamado a eliminar productos");
+    var data = [];
+    var url2 = url + "/" + id ;
+    var success = function (response){
+        alert("El producto fue eliminado");
+        Listar_Pro();
+    }
 
+    $.ajax({
+        type: "DELETE",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url:url2,
+        context: data ,
+        data: data,
+        dataType: "json",
+        success: success
+
+    });
+
+}
 
 
 
