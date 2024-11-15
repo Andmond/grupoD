@@ -133,7 +133,7 @@ function actualizar_Proveedores(){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url:ur2,
+        url:url2,
         context: data ,
         data: data,
         dataType: "json",

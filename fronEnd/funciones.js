@@ -61,41 +61,58 @@ function convertirFormDataAJSON (formData){
     }
 
 
-function Listar_Productos() {
-    console.log("Ejecutar Listar Productos");
-    var data = [];
-    
-    var success = function(response) {
-        var items = [];
-        $.each(response, function(index, producto) {
-            items.push(
-                "<tr>" +
-                "<td>" + producto.id + "</td>" +
-                "<td>" + producto.codigo_proveedor + "</td>" +
-                "<td>" + producto.codigo_producto + "</td>" +
-                "<td>" + producto.producto + "</td>" +
-                "<td>" + producto.cantidad + "</td>" +
-                "<td>" + producto.cantidad_minima + "</td>" +
-                "<td>" +
-                "<a href='editar.html?id="+producto.id+"' style='margin-right: 5px;'>" +
-                "<button class='btn btn-primary edit-button'>✎ Editar</button></a>" +
-                "<a href='eliminar.html?id="+producto.id+"' style='margin-right: 5px;'>" +
-                "<button type='button' class='btn btn-danger delete-button'>Eliminar</button>" +
-                "</td>" +
-                "</tr>"
-
-
-
+    function Listar_Productos() {
+        console.log("Ejecutar Listar Productos");
+        
+        var success = function(response) {
+            console.log(response); 
+            
+            var items = [];
+            
+            $.each(response, function(index, producto) {
+                console.log(producto); 
+                
+                
+                items.push(
+                    "<tr>" +
+                    "<td>" + (producto.id || 'N/A') + "</td>" +
+                    "<td>" + (producto.codigoProveedor || 'N/A') + "</td>" +
+                    "<td>" + (producto.codigoProducto || 'N/A') + "</td>" +
+                    "<td>" + (producto.producto || 'N/A') + "</td>" +
+                    "<td>" + (producto.cantidad || 'N/A') + "</td>" +
+                    "<td>" + (producto.cantidadMinima || 'N/A') + "</td>" +
+                    "<td>" +
+                    "<a href='editar.html?id=" + producto.id + "' style='margin-right: 5px;'>" +
+                    "<button class='btn btn-primary'>✎ Editar</button>" +
+                    "</a>" +
+                    "<a href='eliminar.html?id=" + producto.id + "'>" +
+                    "<button type='button' class='btn btn-danger'>Eliminar</button>" +
+                    "</a>" +
+                    "</td>" +
+                    "</tr>"
+                );
+            });
+            
+            
+            $("#Listar_Productos").html(
+                "<table class='table table-striped'>" +
+                "<thead>" +
+                    "<tr>" +
+                        "<th>Id</th>" +
+                        "<th>Proveedor</th>" +
+                        "<th>Código Producto</th>" +
+                        "<th>Artículo</th>" +
+                        "<th>Cantidad</th>" +
+                        "<th>Cantidad Mínima</th>" +
+                        "<th>Acciones</th>" +
+                    "</tr>" +
+                "</thead>" +
+                "<tbody>" +
+                    items.join("") +
+                "</tbody>" +
+                "</table>"
             );
-        });
-        
-        $("#Listar_Productos").html(
-            "<table><thead><tr><th>Id</th><th>Proveedor</th><th>CodigoProducto</th><th>articulo</th><th>cantidad</th><th>cantidad minima</th><th>Acciones</th></tr></thead><tbody>" +
-            items.join("") +
-            "</tbody></table>"
-        );
-        
-    };
+        };
 
     $.ajax({
         type: "GET",
@@ -118,13 +135,13 @@ function editar_producto(id){
     var data = [] ;
     var success = function (response){
         $("#formEditar  #id").val (response.id);
-        $("#formEditar  #codigo_proveedor").val (response.codigo_proveedor);
-        $("#formEditar  #nombre_producto").val (response.nombre_producto);
-        $("#formEditar  #precio_costo").val (response.precio_costo);
-        $("#formEditar  #precio_venta").val (response.precio_venta);
+        $("#formEditar  #codigo_proveedor").val (response.codigoProveedor);
+        $("#formEditar  #nombre_producto").val (response.producto);
+        $("#formEditar  #precio_costo").val (response.precioCosto);
+        $("#formEditar  #precio_venta").val (response.precioVenta);
         $("#formEditar  #cantidad").val (response.cantidad);
-        $("#formEditar  #cantidad_minima").val (response.cantidad_minima);
-        $("#formEditar  #producto").val (response.producto);
+        $("#formEditar  #cantidad_minima").val (response.cantidadMinima);
+        
 
     }
 
@@ -136,8 +153,7 @@ function editar_producto(id){
             'Content-Type': 'application/json'
         },
         url: url2,
-        context : data,
-        data: data ,
+        
         dataType : "json",
         success:success
     });
@@ -183,31 +199,34 @@ function actualizar_producto(){
     });
 }
 
-function nuevo_producto (){
-    console.log("llamado a nuevo producto");
-    var data = convertirFormDataAJSON ($("#formEditar"));
-    var success = function (response){
-        alert("nuevo producto creado");
-        Listar_Productos();
-        $("#boton-cerrar").click();
 
 
-        $.ajax({
-            type: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            url:url,
-            context: data ,
-            data: data,
-            dataType: "json",
-            success: success
+function nuevo_producto() {
+    console.log("Llamado a nuevo producto");
+    var data = convertirFormDataAJSON($("#formEditar"));
     
-        });
-    }
-}
+    var success = function (response) {
+        alert("Nuevo producto creado");
+        Listar_Productos(); 
+        $("#boton-cerrar").click(); 
+    };
 
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8081/api/productos/crear-producto", // Cambia por la URL correcta
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: success,
+        error: function (error) {
+            console.error("Error al crear el producto:", error);
+            alert("Error al registrar el producto");
+        }
+    });
+}
 
 
 function eliminar_Productos (id ){
@@ -216,7 +235,7 @@ function eliminar_Productos (id ){
     var url2 = url + "/" + id ;
     var success = function (response){
         alert("El producto fue eliminado");
-        Listar_Pro();
+        Listar_Productos();
     }
 
     $.ajax({

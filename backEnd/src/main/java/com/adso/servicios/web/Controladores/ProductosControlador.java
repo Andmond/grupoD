@@ -32,7 +32,7 @@ public ResponseEntity<?> listarProductoEntity() {
     return ResponseEntity.ok(servicio.findAll());
 }
     @CrossOrigin (origins="*")
-    @RequestMapping("/api/productos")
+    @GetMapping("/{id}")
     public ResponseEntity <?> ListaProductoByI(@PathVariable(value=  "id")Integer id){
         java.util.Optional<Productos> producto = servicio.findByID(id);
         if (producto.isPresent()){
@@ -51,14 +51,14 @@ public ResponseEntity <?> crearProducto(@RequestBody Productos producto){
     return ResponseEntity.status(HttpStatus.CREATED).body(servicio.save(producto));
     }
 
-    @CrossOrigin(origins="*")
-    @PutMapping("/api/productos/{id}")
-    public ResponseEntity <?> editarProducto(@RequestBody Productos producto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(servicio.save(producto));
-        }
+    @CrossOrigin(origins = "*")
+@PutMapping("/{id}")
+public ResponseEntity<?> editarProducto(@PathVariable Long id, @RequestBody Productos producto) {
+    return ResponseEntity.status(HttpStatus.OK).body(servicio.save(producto)); 
+}
      
         @CrossOrigin(origins="*")
-        @DeleteMapping
+        @DeleteMapping("/{id}")
         public ResponseEntity <?> eliminarProducto(@PathVariable(value="id")Integer id){
             Optional<Productos> producto =servicio.findByID(id);
             if (producto.isPresent()){
