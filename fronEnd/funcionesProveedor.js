@@ -59,7 +59,7 @@ function editar_Proveedores(id){
         $("#formEditar  #nombre").val (response.nombre);
         $("#formEditar  #numero").val (response.numero);
         $("#formEditar  #correo").val (response.correo);
-        $("#formEditar  #direccion").val (response.direccion);
+        
        
 
     }
@@ -95,14 +95,30 @@ function getQueryVariable (variable){
 
 }
 
-function actualizar_Proveedores(){
-    console.log("llamado a actualizar proveedores");
-    var data = convertirFormDataAJSON ($("#formEditar"));
-    var success = function (response){
-        alert("proveedores actualizado");
+function actualizar_Proveedores() {
+    console.log("Llamado a actualizar proveedores");
+    
+ 
+    var data = convertirFormDataAJSON($("#formEditar"));
+    console.log("Datos a enviar:", data); 
+    
+    var url = "http://localhost:8081/api/proveedores"; 
+
+
+    var success = function(response) {
+        console.log("Respuesta del servidor:", response);
+        alert("Proveedor actualizado exitosamente");
         Listar_Proveedores();
-        window.location.href = "proveedores.html"
-    }
+        window.location.href = "proveedores.html";
+    };
+
+ 
+    var error = function(xhr, status, error) {
+        console.error("Error al actualizar proveedor:", error);
+        console.error("Detalles:", xhr.responseText); 
+        alert("Hubo un problema al actualizar el proveedor. Por favor, revisa los datos e intenta de nuevo.");
+    };
+
 
     $.ajax({
         type: "PUT",
@@ -110,12 +126,11 @@ function actualizar_Proveedores(){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url:url,
-        context: data ,
-        data: data,
+        url: url,
+        data: JSON.stringify(data), 
         dataType: "json",
-        success: success
-
+        success: success,
+        error: error 
     });
 }
  function eliminar_Proveedores (id ){
@@ -146,6 +161,8 @@ function actualizar_Proveedores(){
 function actualizar_Proveedores(){
     console.log("llamado a actualizar proveedores");
     var data = convertirFormDataAJSON ($("#formEditar"));
+    data.id = parseInt(data.id, 10);
+    console.log("Datos JSON a enviar:", JSON.stringify(data)); 
     var success = function (response){
         alert("proveedor actualizado");
         Listar_Productos();
@@ -192,7 +209,7 @@ function nuevo_proveedor (){
     }
 
 
-// Función para convertir los datos del formulario a un objeto JSON
+
 function convertirFormDataAJSON($form) {
     var unindexed_array = $form.serializeArray();
     var indexed_array = {};

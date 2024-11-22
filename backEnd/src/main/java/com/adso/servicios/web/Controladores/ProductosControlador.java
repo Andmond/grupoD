@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adso.servicios.web.Entidades.Productos;
 import com.adso.servicios.web.Servicios.Interfaces.ProductosInt;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping( "/api/productos")
 public class ProductosControlador {
@@ -44,26 +44,33 @@ public ResponseEntity<?> listarProductoEntity() {
 
          }
 
+
         
-@CrossOrigin(origins="*")
-@PostMapping ("/crear-producto")
-public ResponseEntity <?> crearProducto(@RequestBody Productos producto){
+ @CrossOrigin(origins="*")
+ @PostMapping ("/crear-producto")
+ public ResponseEntity <?> crearProducto(@RequestBody Productos producto){
+    System.out.println(producto.getId());
+    System.out.println(producto.getCantidad());
     return ResponseEntity.status(HttpStatus.CREATED).body(servicio.save(producto));
     }
 
-    @CrossOrigin(origins = "*")
-@PutMapping("/{id}")
-public ResponseEntity<?> editarProducto(@PathVariable Long id, @RequestBody Productos producto) {
-    return ResponseEntity.status(HttpStatus.OK).body(servicio.save(producto)); 
-}
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editarProducto(@PathVariable(value = "id") Integer id, @RequestBody Productos producto) {
+        Optional<Productos> existingProducto = servicio.findByID(id);
+        if (!existingProducto.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        producto.setId(id);  
+        return ResponseEntity.status(HttpStatus.OK).body(servicio.save(producto)); 
+    }
      
-        @CrossOrigin(origins="*")
+ @CrossOrigin(origins="*")
         @DeleteMapping("/{id}")
         public ResponseEntity <?> eliminarProducto(@PathVariable(value="id")Integer id){
             Optional<Productos> producto =servicio.findByID(id);
             if (producto.isPresent()){
                 servicio.delete(id);
-                return ResponseEntity.ok(null);
+                return ResponseEntity.ok("Producto eliminado correctamente");
                 
 
             }

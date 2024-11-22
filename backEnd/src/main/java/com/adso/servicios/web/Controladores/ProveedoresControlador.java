@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adso.servicios.web.Entidades.Proveedores;
 import com.adso.servicios.web.Servicios.Interfaces.ProveedoresInt;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping( "/api/proveedores")
 public class ProveedoresControlador {
@@ -35,7 +35,7 @@ public ResponseEntity<?> listarProveedoresEntity() {
     return ResponseEntity.ok(servicio.findAll());
 }
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/proveedores/{id}")
+@RequestMapping("/{id}")
 public ResponseEntity<?> ListaProveedoresById(@PathVariable(value = "id") Integer id) {
     Optional<Proveedores> proveedores = servicio.findByID(id);
     if (proveedores.isPresent()) {
@@ -51,11 +51,26 @@ public ResponseEntity <?> crearProveedores(@RequestBody Proveedores proveedores)
     return ResponseEntity.status(HttpStatus.CREATED).body(servicio.save(proveedores));
     }
 
-    @CrossOrigin(origins="*")
-    @PutMapping
-    public ResponseEntity <?> editarProveedores(@RequestBody Proveedores proveedores){
-        return ResponseEntity.status(HttpStatus.CREATED).body(servicio.save(proveedores));
-        }
+    
+    @CrossOrigin(origins="http://localhost:8081")
+    @PutMapping("/{id}")
+public ResponseEntity<?> editarProveedores(@PathVariable Integer id, @RequestBody Proveedores nuevosDatosProveedor) {
+    // Verifica si el proveedor existe
+    Optional<Proveedores> proveedorExistente = servicio.findByID(id);
+    if (!proveedorExistente.isPresent()) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no encontrado");
+    }
+
+    // Actualiza solo los campos permitidos, dejando `codigo` sin cambios
+    Proveedores proveedor = proveedorExistente.get();
+    proveedor.setCorreo(nuevosDatosProveedor.getCorreo());
+    proveedor.setNombre(nuevosDatosProveedor.getNombre());
+    proveedor.setNumero(nuevosDatosProveedor.getNumero());
+    // No actualiza `codigo`
+
+    Proveedores proveedorActualizado = servicio.save(proveedor);
+    return ResponseEntity.ok(proveedorActualizado);
+}
      
         @CrossOrigin(origins="*")
         @DeleteMapping

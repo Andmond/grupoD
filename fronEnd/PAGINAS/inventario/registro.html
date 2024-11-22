@@ -162,25 +162,29 @@
 
 
 <form id="formEditar">
+    <div>
+        <label for="id">ID del Producto</label>
+        <input type="text" id="id" name="id" readonly />
+      </div>
     
     <div>
-        <label for="CodigoDeProveedor">Codigo De Proveedor:</label>
+        <label for="codigo_proveedor">Codigo De Proveedor:</label>
         <input type="text" id="codigo_proveedor" name="codigo_proveedor">
     </div>
     <div>
-        <label for="CodigoDeProducto">Codigo De Producto:</label>
+        <label for="codigo_producto">Codigo De Producto:</label>
         <input type="text" id="codigo_producto" name="codigo_producto">
     </div>
     <div>
-        <label for="NombreDeProducto">Nombre De Producto:</label>
+        <label for="producto">Nombre De Producto:</label>
         <input type="text" id="producto" name="producto">
     </div>
     <div>
-        <label for="precioCompra">Precio de Compra:</label>
+        <label for="precio_costo">Precio de Compra:</label>
         <input type="number" id="precio_costo" name="precio_costo" step="0.01">
     </div>
     <div>
-        <label for="precioVenta">Precio de Venta:</label>
+        <label for="precio_venta">Precio de Venta:</label>
         <input type="number" id="precio_venta" name="precio_venta" step="0.01">
     </div>
     <div>
@@ -188,11 +192,12 @@
         <input type="number" id="cantidad" name="cantidad">
     </div>
     <div>
-        <label for="CantidadMinima">Cantidad Minima:</label>
+        <label for="cantidad_minima">Cantidad Minima:</label>
         <input type="number" id="cantidad_minima" name="cantidad_minima" step="0.01">
     </div>
+    
     <div>
-        <button type="button" onclick="nuevo_producto()">Guardar</button>
+        <button type="submit" class="btn btn-primary" onclick="nuevo_producto(); return false;">Guardar</button>
         <button type="button" onclick="cancelarRegistro()">Cancelar</button>
     </div>
 </form>
@@ -201,17 +206,16 @@
     <p>&copy; 2024 Minimercado Yireth - Todos los derechos reservados.</p>
 </footer>
 
-<script >
-function nuevo_producto(){
-};
-
+<script>
+    
+    function nuevo_producto() {
+        alert("Producto guardado");
+    }
+    
     function cancelarRegistro() {
         alert("Registro cancelado");
     }
-
-    
-    
-</script>
+    </script>
 
 </body>
 </html>

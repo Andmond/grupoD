@@ -79,6 +79,8 @@ function convertirFormDataAJSON (formData){
                     "<td>" + (producto.codigoProveedor || 'N/A') + "</td>" +
                     "<td>" + (producto.codigoProducto || 'N/A') + "</td>" +
                     "<td>" + (producto.producto || 'N/A') + "</td>" +
+                    "<td>" + (producto.precioCosto || 'N/A') + "</td>" +
+                    "<td>" + (producto.precioVenta || 'N/A') + "</td>" +
                     "<td>" + (producto.cantidad || 'N/A') + "</td>" +
                     "<td>" + (producto.cantidadMinima || 'N/A') + "</td>" +
                     "<td>" +
@@ -102,6 +104,8 @@ function convertirFormDataAJSON (formData){
                         "<th>Proveedor</th>" +
                         "<th>Código Producto</th>" +
                         "<th>Artículo</th>" +
+                        "<th>Costo</th>" +
+                        "<th>venta</th>" +
                         "<th>Cantidad</th>" +
                         "<th>Cantidad Mínima</th>" +
                         "<th>Acciones</th>" +
@@ -136,6 +140,7 @@ function editar_producto(id){
     var success = function (response){
         $("#formEditar  #id").val (response.id);
         $("#formEditar  #codigo_proveedor").val (response.codigoProveedor);
+        $("#formEditar  #codigo_producto").val (response.codigoProducto);
         $("#formEditar  #nombre_producto").val (response.producto);
         $("#formEditar  #precio_costo").val (response.precioCosto);
         $("#formEditar  #precio_venta").val (response.precioVenta);
@@ -160,20 +165,15 @@ function editar_producto(id){
 
 }
 
-function getQueryVariable (variable){
+function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
-    for (var i=0; i < vars.length; i++){
-        var pair = vars[i].split("=");
-        if (pair[0] == variable){
-            return pair[1];
-        }
-
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) { return pair[1]; }
     }
-    return false ;
-
-
-}
+    return null;
+  }
 
 function actualizar_producto(){
     console.log("llamado a actualizar producto");
@@ -183,7 +183,7 @@ function actualizar_producto(){
         Listar_Productos();
         window.location.href = "inventario.html"
     }
-
+console.log (data);
     $.ajax({
         type: "PUT",
         headers: {
@@ -204,30 +204,40 @@ function actualizar_producto(){
 function nuevo_producto() {
     console.log("Llamado a nuevo producto");
     var data = convertirFormDataAJSON($("#formEditar"));
-    
+    console.log("Datos enviados:", data);
     var success = function (response) {
         alert("Nuevo producto creado");
+        console.log("Respuesta del servidor:", response); 
         Listar_Productos(); 
         $("#boton-cerrar").click(); 
     };
 
-    $.ajax({
+    ajax({
+        
+ 
         type: "POST",
-        url: "http://localhost:8081/api/productos/crear-producto", // Cambia por la URL correcta
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(data),
-        dataType: "json",
-        success: success,
-        error: function (error) {
-            console.error("Error al crear el producto:", error);
-            alert("Error al registrar el producto");
+                url: "http://localhost:8081/api/productos/crear-producto",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(data),
+                dataType: "json",
+                success: function(response) {
+                    console.log("Respuesta del servidor:", response);
+                    alert("Nuevo producto creado");
+                    Listar_Productos(); 
+                },
+                error: function (error) {
+                    console.error("Error al crear el producto:", error);
+                    alert("Error al registrar el producto");
+                }
+            });
         }
-    });
-}
-
+        
+        function cancelarRegistro() {
+            alert("Registro cancelado");
+        }
 
 function eliminar_Productos (id ){
     console.log("llamado a eliminar productos");
