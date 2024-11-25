@@ -1,0 +1,73 @@
+<html>
+  <html lang="en" data-bs-theme="dark">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../../librerias/jquery-3.7.1.js"></script>
+    <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
+    <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+    <script src="../../funcionesUsuario.js" ></script>
+    <style>
+      .container {
+        font-family: 'Rozha One', serif; /* Aplicar la fuente Rozha One */
+      
+      }
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+    </a>
+  </div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="../../index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="nuevoUsuario.html">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../inventario/registro.html">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../proveedores/RegistroProveedores.html">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contactenos</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+      <a class="nav-link " href="nuevoUsuario.html">Crear Usuario</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="UsuariosListado.html">Listado Usuarios</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="editarUsuarios.html">Editar Usuarios</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="eliminarUsuario.html">eliminar usuarios</a>
+    </li>
+  </ul><br>
+    <div class="container">  
+    <div class="row">
+        <div class="col-md-1 text-center"></div>
+        <div class="col-md-10  p-2">
+          <div id="listar_usuarios"></div>         
+        </div>
+        <div class="col-md-1 text-center"></div>
+    </div>
+</div>
+    <!--<button type="button" class="btn btn-danger">Ingresar</button>-->
+
+<script>
+    listar_usuarios();
+</script>
+</body>
+</html>

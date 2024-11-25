@@ -1,4 +1,4 @@
-var url  = "http://localhost:8081/api/productos";
+var url = "http://localhost:8081/api/productos";
 
 
 class Cart {
@@ -50,202 +50,149 @@ class Cart {
     }
 }
 
-function convertirFormDataAJSON (formData){
+function convertirFormDataAJSON(formData) {
     var loginForm = formData.serializeArray();
     var loginFormObject = {};
-    $.each (loginForm,
-        function (i , v){
-            loginFormObject[v.name] = v.value;
+    $.each(loginForm,
+        function(i, v) {
+        loginFormObject[v.name] = v.value;
+    });
+    return JSON.stringify(loginFormObject);
+}
+
+
+function listar_productos(){
+    
+    console.log("Ejecutar Listar Productos");
+    var data = [];
+    var success = function (response) {
+        console.log(response);
+        var items = [];
+        $.each(response,function(index, producto){
+            items.push("<tr><td>"+producto.id+"</td><td>"+producto.codigo_proveedor +"</td><td>"+producto.codigo_producto+"</td><td>"+producto.producto+"</td> <td>"+producto.precio_costo+"</td>  <td>"+producto.precio_venta+"</td> <td>"+producto.cantidad+"</td> <td>"+producto.cantidad_minima+"</td>  <td><a class='btn btn-success' href='editar.html?id="+producto.id+"'>Editar</a> <a class='btn btn-danger' href='eliminar.html?id="+producto.id+"'>Eliminar</a></td></tr>");
         });
-        return JSON.stringify (loginFormObject);
-    }
-
-
-    function Listar_Productos() {
-        console.log("Ejecutar Listar Productos");
-        
-        var success = function(response) {
-            console.log(response); 
-            
-            var items = [];
-            
-            $.each(response, function(index, producto) {
-                console.log(producto); 
-                
-                
-                items.push(
-                    "<tr>" +
-                    "<td>" + (producto.id || 'N/A') + "</td>" +
-                    "<td>" + (producto.codigoProveedor || 'N/A') + "</td>" +
-                    "<td>" + (producto.codigoProducto || 'N/A') + "</td>" +
-                    "<td>" + (producto.producto || 'N/A') + "</td>" +
-                    "<td>" + (producto.precioCosto || 'N/A') + "</td>" +
-                    "<td>" + (producto.precioVenta || 'N/A') + "</td>" +
-                    "<td>" + (producto.cantidad || 'N/A') + "</td>" +
-                    "<td>" + (producto.cantidadMinima || 'N/A') + "</td>" +
-                    "<td>" +
-                    "<a href='editar.html?id=" + producto.id + "' style='margin-right: 5px;'>" +
-                    "<button class='btn btn-primary'>✎ Editar</button>" +
-                    "</a>" +
-                    "<a href='eliminar.html?id=" + producto.id + "'>" +
-                    "<button type='button' class='btn btn-danger'>Eliminar</button>" +
-                    "</a>" +
-                    "</td>" +
-                    "</tr>"
-                );
-            });
-            
-            
-            $("#Listar_Productos").html(
-                "<table class='table table-striped'>" +
-                "<thead>" +
-                    "<tr>" +
-                        "<th>Id</th>" +
-                        "<th>Proveedor</th>" +
-                        "<th>Código Producto</th>" +
-                        "<th>Artículo</th>" +
-                        "<th>Costo</th>" +
-                        "<th>venta</th>" +
-                        "<th>Cantidad</th>" +
-                        "<th>Cantidad Mínima</th>" +
-                        "<th>Acciones</th>" +
-                    "</tr>" +
-                "</thead>" +
-                "<tbody>" +
-                    items.join("") +
-                "</tbody>" +
-                "</table>"
-            );
-        };
+        $("#listar_productos").html("<table class='table table-hover'><thead><tr><th>ID</th><th>CODIGO PROVEEDOR</th><th>CODIGO PRODUCTO</th><th>PRODUCTO</th><th>PRECIO COSTO</th><th>PRECIO VENTA</th><th>CANTIDAD</th> <th>CANTIDAD MINIMA</th><th colspan='2'>OPCIONES</th></tr></thead><tbody>"+items.join("")+"</tbody></table>");
+    };
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:8081/api/productos", 
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        url: url,
+        context: data,
+        data: data,
         dataType: "json",
-        success: success,
-        error: function(xhr, status, error) {
-            console.error("Error en la solicitud:", error);
-            alert("Ocurrió un error al listar los productos.");
-        }
+        success: success
     });
+    
 }
-function editar_producto(id){
-    console.log ("llamado a editar producto") ;
-    var url2 = url + "/" + id ;
-    var data = [] ;
-    var success = function (response){
-        $("#formEditar  #id").val (response.id);
-        $("#formEditar  #codigo_proveedor").val (response.codigoProveedor);
-        $("#formEditar  #codigo_producto").val (response.codigoProducto);
-        $("#formEditar  #nombre_producto").val (response.producto);
-        $("#formEditar  #precio_costo").val (response.precioCosto);
-        $("#formEditar  #precio_venta").val (response.precioVenta);
-        $("#formEditar  #cantidad").val (response.cantidad);
-        $("#formEditar  #cantidad_minima").val (response.cantidadMinima);
-        
+function editar_producto(id) {
+    console.log("llamado editar producto");
+    var url2 = url + "/" + id;
+    var data = [];
+    var success = function (response) {
+        console.log(response); 
+        $("#formEditar  #id").val(response.id);
+        $("#formEditar  #codigo_proveedor").val(response.codigoProveedor);
+        $("#formEditar  #codigo_producto").val(response.codigoProducto);
+        $("#formEditar  #nombre_producto").val(response.producto);
+        $("#formEditar  #precio_costo").val(response.precioCosto);
+        $("#formEditar  #precio_venta").val(response.precioVenta);
+        $("#formEditar  #cantidad").val(response.cantidad);
+        $("#formEditar  #cantidad_minima").val(response.cantidadMinima);
+
 
     }
 
 
-    $.ajax ({
-        type : "GET",
-        headers :{
-             'Accept': 'application/json',
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         url: url2,
-        
-        dataType : "json",
-        success:success
+        context: data,
+        data: data,
+        dataType: "json",
+        success: success
     });
 
 }
-
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split("=");
-      if (pair[0] == variable) { return pair[1]; }
+    for (var i=0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable) {
+            return pair[1];
+        }
     }
-    return null;
-  }
+    return false;
+}
 
 function actualizar_producto(){
     console.log("llamado a actualizar producto");
-    var data = convertirFormDataAJSON ($("#formEditar"));
-    var success = function (response){
-        alert("producto actualizado");
-        Listar_Productos();
-        window.location.href = "inventario.html"
+    var data = convertirFormDataAJSON($("#formEditar"));
+    var success = function (response) {
+        alert("El producto fue actualizado");
+        window.location.href = "inventario.html";
     }
-console.log (data);
+console.log(data);
     $.ajax({
         type: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url:url,
-        context: data ,
+        url: url,
+        context: data,
         data: data,
         dataType: "json",
         success: success
-
     });
 }
 
 
 
-function nuevo_producto() {
-    console.log("Llamado a nuevo producto");
-    var data = convertirFormDataAJSON($("#formEditar"));
-    console.log("Datos enviados:", data);
+function nuevo_producto(){
+    console.log("llamado a nuevo producto");
+    var data = convertirFormDataAJSON($("#formRegistrar"));
     var success = function (response) {
-        alert("Nuevo producto creado");
-        console.log("Respuesta del servidor:", response); 
-        Listar_Productos(); 
-        $("#boton-cerrar").click(); 
-    };
+        console.log(response); 
+    
+        alert("El producto fue registrado");
+        window.location.href = "inventario.html";
+    }
 
-    ajax({
-        
- 
+    $.ajax({
         type: "POST",
-                url: "http://localhost:8081/api/productos/crear-producto",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                data: JSON.stringify(data),
-                dataType: "json",
-                success: function(response) {
-                    console.log("Respuesta del servidor:", response);
-                    alert("Nuevo producto creado");
-                    Listar_Productos(); 
-                },
-                error: function (error) {
-                    console.error("Error al crear el producto:", error);
-                    alert("Error al registrar el producto");
-                }
-            });
-        }
-        
-        function cancelarRegistro() {
-            alert("Registro cancelado");
-        }
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: url,
+        context: data,
+        data: data,
+        dataType: "json",
+        success: success
+    });
+}
 
-function eliminar_Productos (id ){
-    console.log("llamado a eliminar productos");
+function cancelarRegistro() {
+    alert("Registro cancelado");
+}
+
+function eliminar_producto(){
+    console.log("llamado a eliminar producto");
     var data = [];
-    var url2 = url + "/" + id ;
-    var success = function (response){
+    var id = $("#formEliminar #id").val();
+    var url2 = url + "/" + id;
+    var success = function (response) {
         alert("El producto fue eliminado");
-        Listar_Productos();
+        window.location.href = "listar.html";
     }
 
     $.ajax({
@@ -254,20 +201,40 @@ function eliminar_Productos (id ){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url:url2,
-        context: data ,
+        url: url2,
+        context: data,
         data: data,
         dataType: "json",
         success: success
-
     });
+}
 
+function pre_eliminar_producto(id) {
+    console.log("llamado pre eliminar producto");
+    var url2 = url + "/" + id;
+    var data = [];
+    var success = function (response) {
+        console.log(response); 
+        $("#formEliminar #id").val(response.id);
+        $("#formEliminar #nombre").html("<b>"+response.nombre+"</b>");      
+    }
+
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: url2,
+        context: data,
+        data: data,
+        dataType: "json",
+        success: success
+    });
 }
 
 
 
-    
 
-        
 
 

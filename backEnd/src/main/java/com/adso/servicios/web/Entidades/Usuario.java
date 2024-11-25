@@ -16,29 +16,37 @@ public class Usuario {
     @GeneratedValue (strategy = GenerationType.IDENTITY )
     private Integer id;
 
+    @Column(name ="correo", nullable = false , length = 45 )
+@NonNull
+    private String correo;
+
     @Column(name ="identificacion", nullable = false , length = 45 )
 @NonNull
     private String identificacion;
+
 
     @Column(name ="nombre", nullable = false , length = 45 )
 @NonNull
     private String nombre;
 
-
     @Column(name ="telefono", nullable = false , length = 45 )
 @NonNull
-    private String telefono;
-
-    @Column(name ="correo", nullable = false , length = 45 )
-@NonNull
-    private String correo;
+    private String 	telefono;
 
     public Integer getId() {
         return id;
-    }
-
+    
+}
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getIdentificacion() {
@@ -49,11 +57,11 @@ public class Usuario {
         this.identificacion = identificacion;
     }
 
-    public String getNombre() {
+    public String getnombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setnombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -64,16 +72,7 @@ public class Usuario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
     
+   
 
-
-    
 }

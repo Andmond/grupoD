@@ -40,4 +40,11 @@ public class UsuariosImp  implements UsuarioInt{
         repositorio .deleteById(id);
     }
 
+
+    @Override
+    public Object buscar(Object getusuario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscar'");
+    }
+
 }

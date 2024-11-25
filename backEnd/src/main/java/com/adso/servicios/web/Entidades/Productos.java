@@ -1,6 +1,7 @@
 package com.adso.servicios.web.Entidades;
 
-import io.micrometer.common.lang.NonNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,36 +14,36 @@ import jakarta.persistence.Table;
 public class Productos  {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name ="codigo_proveedor", nullable = false , length = 45 )
-@NonNull
+    @Column(name = "codigo_proveedor", nullable = false, length = 45)
+    @JsonProperty("codigo_proveedor")
     private String codigoProveedor;
 
-    @Column(name ="codigo_producto", nullable = false , length = 11 )
-@NonNull
-    private int codigoProducto;
+    @Column(name = "codigo_producto", nullable = false, length = 11)
+    @JsonProperty("codigo_producto")
+    private Integer codigoProducto;
 
-    @Column(name ="producto", nullable = false , length = 200 )
-    @NonNull
+    @Column(name = "producto", nullable = false, length = 200)
+    @JsonProperty("producto")
     private String producto;
 
-    @Column(name ="precio_costo", nullable = false , length = 11 )
-    @NonNull
-    private int precioCosto;
+    @Column(name = "precio_costo", nullable = false, length = 11)
+    @JsonProperty("precio_costo")
+    private Integer precioCosto;
 
-    @Column(name ="precio_venta", nullable = false , length = 11 )
-    @NonNull
-    private int precioVenta;
+    @Column(name = "precio_venta", nullable = false, length = 11)
+    @JsonProperty("precio_venta")
+    private Integer precioVenta;
 
-    @Column(name ="cantidad", nullable = false , length = 11 )
-    @NonNull
-    private int cantidad;
+    @Column(name = "cantidad", nullable = false, length = 11)
+    @JsonProperty("cantidad")
+    private Integer cantidad;
 
-    @Column(name ="cantidad_minima", nullable = false , length = 11 )
-    @NonNull
-    private int cantidadMinima;
+    @Column(name = "cantidad_minima", nullable = false, length = 11)
+    @JsonProperty("cantidad_minima")
+    private Integer cantidadMinima;
 
     public Integer getId() {
         return id;
@@ -60,11 +61,11 @@ public class Productos  {
         this.codigoProveedor = codigoProveedor;
     }
 
-    public int getCodigoProducto() {
+    public Integer getCodigoProducto() {
         return codigoProducto;
     }
 
-    public void setCodigoProducto(int codigoProducto) {
+    public void setCodigoProducto(Integer codigoProducto) {
         this.codigoProducto = codigoProducto;
     }
 
@@ -76,39 +77,40 @@ public class Productos  {
         this.producto = producto;
     }
 
-    public int getPrecioCosto() {
+    public Integer getPrecioCosto() {
         return precioCosto;
     }
 
-    public void setPrecioCosto(int precioCosto) {
+    public void setPrecioCosto(Integer precioCosto) {
         this.precioCosto = precioCosto;
     }
 
-    public int getPrecioVenta() {
+    public Integer getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(int precioVenta) {
+    public void setPrecioVenta(Integer precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public int getCantidadMinima() {
+    public Integer getCantidadMinima() {
         return cantidadMinima;
     }
 
-    public void setCantidadMinima(int cantidadMinima) {
+    public void setCantidadMinima(Integer cantidadMinima) {
         this.cantidadMinima = cantidadMinima;
     }
-    
 
+   
+    
     
      
 }

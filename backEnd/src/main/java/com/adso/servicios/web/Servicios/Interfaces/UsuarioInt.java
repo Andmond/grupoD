@@ -11,5 +11,6 @@ public List<Usuario>  findAll ( );
 public Optional <Usuario> findByID (Integer id) ;
 public Usuario save (Usuario usuario) ;
 public void delete (Integer id) ;
+public Object buscar(Object getusuario);
 
 }
