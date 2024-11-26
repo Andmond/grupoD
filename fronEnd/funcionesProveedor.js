@@ -28,7 +28,7 @@ function Listar_Proveedores() {
         });
 
         $("#Listar_Proveedores").html(
-            "<table><thead><tr><th>ID</th><th>Codigo</th><th>Nombre</th><th>Numero</th><th>Correo</th><th>Acciones</th></tr></thead><tbody>" +
+            "<table class='table table-hover'><thead><tr><th>ID</th><th>Codigo</th><th>Nombre</th><th>Numero</th><th>Correo</th><th>Acciones</th></tr></thead><tbody>" +
             items.join("") +
             "</tbody></table>"
         );
@@ -98,7 +98,7 @@ function actualizar_proveedores(){
     var data = convertirFormDataAJSON($("#formEditar"));
     var success = function (response) {
         alert("El proveedor fue actualizado");
-        window.location.href = "listar.html";
+        window.location.href = "proveedores.html";
     }
 console.log(data);
     $.ajax({
@@ -173,7 +173,7 @@ function nuevo_proveedor(){
 
 
         alert("El proveedor fue registrado");
-        window.location.href = "Us.html";
+        window.location.href = "proveedores.html";
     }
 
     $.ajax({

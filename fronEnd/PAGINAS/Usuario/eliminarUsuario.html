@@ -1,22 +1,26 @@
 <html>
-  <html lang="en" data-bs-theme="dark"></html>
+<html lang="en" data-bs-theme="dark">
+
+</html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../../librerias/jquery-3.7.1.js"></script>
-    <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
-    <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
-    <script src="../../funcionesUsuario.js" ></script>
-    <style>
-      .container {
-        font-family: 'Rozha One', serif; /* Aplicar la fuente Rozha One */
-      
-      }
-    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../librerias/jquery-3.7.1.js"></script>
+  <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
+  <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+  <script src="../../funcionesUsuario.js"></script>
+  <style>
+    .container {
+      font-family: 'Rozha One', serif;
+
+    }
+  </style>
 </head>
+
 <body>
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
     </a>
   </div>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -57,35 +61,36 @@
     </li>
   </ul><br>
 
-    <div class="container">  
+  <div class="container">
     <div class="row">
-        <div class="col-md-4 text-center"></div>
-        <div class="col-md-4  p-2">
-          
-            <div class="card">
-                <div class="card-header bg-primary text-white text-center">Eliminar Producto</div>
-                <div class="card-body">
-                  <form id="formEliminar">
-                    <input id="id" name="id" type="hidden">
-                    <div class="alert alert-danger">
-                      <strong>Advertencia!</strong> ¿Esta seguro de eliminar el producto <span id="nombre"></span>?
-                    </div>
-                  </form>
-                    
-                <div class="card-footer bg-primary text-center">
-                    <button type="button" class="btn btn-danger" onclick="eliminar_usuario();">Eliminar</button>
-                    <a href="listar.html"  type="button" class="btn btn-warning">Cancelar</a>
-                </div>
+      <div class="col-md-4 text-center"></div>
+      <div class="col-md-4  p-2">
+
+        <div class="card">
+          <div class="card-header bg-primary text-white text-center">Eliminar Producto</div>
+          <div class="card-body">
+            <form id="formEliminar">
+              <input id="id" name="id" type="hidden">
+              <div class="alert alert-danger">
+                <strong>Advertencia!</strong> ¿Esta seguro de eliminar el producto <span id="nombre"></span>?
+              </div>
+            </form>
+
+            <div class="card-footer bg-primary text-center">
+              <button type="button" class="btn btn-danger" onclick="eliminar_usuario();">Eliminar</button>
+              <a href="listar.html" type="button" class="btn btn-warning">Cancelar</a>
             </div>
+          </div>
 
         </div>
         <div class="col-md-4 text-center"></div>
+      </div>
     </div>
-</div>
-    <!--<button type="button" class="btn btn-danger">Ingresar</button>-->
+
     <script>
-      var idp =  getQueryVariable("id");
+      var idp = getQueryVariable("id");
       pre_eliminar_usuario(idp);
     </script>
 </body>
+
 </html>

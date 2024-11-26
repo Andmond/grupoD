@@ -1,22 +1,24 @@
 <html>
-  <html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../../librerias/jquery-3.7.1.js"></script>
-    <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
-    <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
-    <script src="../../funcionesUsuario.js" ></script>
-    <style>
-      .container {
-        font-family: 'Rozha One', serif; /* Aplicar la fuente Rozha One */
-      
-      }
-    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../librerias/jquery-3.7.1.js"></script>
+  <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
+  <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+  <script src="../../funcionesUsuario.js"></script>
+  <style>
+    .container {
+      font-family: 'Rozha One', serif;
+
+    }
+  </style>
 </head>
+
 <body>
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
     </a>
   </div>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -55,19 +57,20 @@
       <a class="nav-link disabled" href="eliminarUsuario.html">eliminar usuarios</a>
     </li>
   </ul><br>
-    <div class="container">  
+  <div class="container">
     <div class="row">
-        <div class="col-md-1 text-center"></div>
-        <div class="col-md-10  p-2">
-          <div id="listar_usuarios"></div>         
-        </div>
-        <div class="col-md-1 text-center"></div>
+      <div class="col-md-1 text-center"></div>
+      <div class="col-md-10  p-2">
+        <div id="listar_usuarios"></div>
+      </div>
+      <div class="col-md-1 text-center"></div>
     </div>
-</div>
-    <!--<button type="button" class="btn btn-danger">Ingresar</button>-->
+  </div>
 
-<script>
+
+  <script>
     listar_usuarios();
-</script>
+  </script>
 </body>
+
 </html>

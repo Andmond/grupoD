@@ -1,5 +1,7 @@
 <html>
-  <html lang="en" data-bs-theme="dark"></html>
+<html lang="en" data-bs-theme="dark">
+
+</html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,8 +11,8 @@
   <script src="../../funcionesUsuario.js"></script>
   <style>
     .container {
-      font-family: 'Rozha One', serif; /* Aplicar la fuente Rozha One */
-    
+      font-family: 'Rozha One', serif;
+
     }
   </style>
 </head>
@@ -18,7 +20,7 @@
 <body>
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
     </a>
   </div>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -75,7 +77,8 @@
               </div>
               <div class="mb-3 mt-3">
                 <label for="identificacion" class="form-label">identificacion:</label>
-                <input type="text" class="form-control" id="identificacion" placeholder="Digite identificacion" name="identificacion">
+                <input type="text" class="form-control" id="identificacion" placeholder="Digite identificacion"
+                  name="identificacion">
               </div>
 
               <div class="mb-3 mt-3">
@@ -87,24 +90,24 @@
                 <input type="text" class="form-control" id="telefono" placeholder="Digite telefono" name="telefono">
               </div>
 
-              
-          <div class="card-footer bg-primary text-center">
-            <button type="button" class="btn btn-dark" onclick="actualizar_usuario();">Editar</button>
-            <a href="UsuariosListado.html" type="button" class="btn btn-warning">Cancelar</a>
+
+              <div class="card-footer bg-primary text-center">
+                <button type="button" class="btn btn-dark" onclick="actualizar_usuario();">Editar</button>
+                <a href="UsuariosListado.html" type="button" class="btn btn-warning">Cancelar</a>
+              </div>
+
           </div>
 
         </div>
-
+        <div class="col-md-4 text-center"></div>
       </div>
-      <div class="col-md-4 text-center"></div>
     </div>
-  </div>
-  
 
-  <script>
-    var idp =  getQueryVariable("id");
-    editar_usuario(idp);
-  </script>
+
+    <script>
+      var idp = getQueryVariable("id");
+      editar_usuario(idp);
+    </script>
 </body>
 
 </html>

@@ -1,69 +1,123 @@
 <!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 
+</html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet">
-    <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Inventario</title>
-    <link rel="stylesheet" href="../../css/styles.css" />
-    <script src="../../funciones.js"></script>
-    <h1> Minimercado Yireth </h1>
-    <div class="user-box">
-      <img src="../imagene/inventario.png" alt="Imagen de Usuario">
-      <span>Nombre de Usuario</span>
-      
-  </div>
-  </head>
 
-  <body>
-    <header>
-      <div class="table">
-        <h1 class="Título-principal">Sistema de inventario</h1>
-        
-        <nav>
-          <ul class="Menú">
-            <li><a href="../../index.html"> Inicio</a></li>
-            
-            <li><a href="../productos/registro.html"> Productos </a></li>
-            
-          </ul>
-        </nav>
-        <nav class="navbar navbar-expand-sm bg-light justify-content-center">
-         
-         
-            </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet">
+  <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+  <script src="../../librerias/jquery-3.7.1.js"></script>
+  <title>Inventario</title>
+
+  <script src="../../funciones.js"></script>
+
+
+  <img src="../imagenes/user.jpg" alt="Abrir loginModal" style="cursor: pointer; width: 100px;" data-bs-toggle="modal"
+    data-bs-target="#loginModal"> </div>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="../../index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../Usuario/nuevoUsuario.html">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../inventario/registro.html">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../proveedores/RegistroProveedores.html">Proveedores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Contactenos</a>
+          </li>
+        </ul>
       </div>
-    </header>
-    
-    
+    </nav>
 
-    <main>
-      <section class="Principal">
-       
+
+    <ul class="nav nav-pills nav-justified">
+      <li class="nav-item">
+        <a class="nav-link active" href="registro.html">Crear Producto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="inventario.html">Listado Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="editar.html">Editar Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="eliminar.html">eliminar Productos</a>
+      </li>
+    </ul><br>
+
+
+    </ul>
+    </nav>
+
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Usuario</label>
+                  <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+              </form>
+            </div>
+          </div>
         </div>
 
+        </li>
+      </div>
+  </header>
 
-        <div id="listar_productos"></div>
-            </tbody>
-          
-          <script>
-            
-            listar_productos();
-            
-        </script>
-        </div>
-      </section>
-    </main>
-    <script >
-    
-    </script>
 
-  </body>
-  <!-- Pie de página -->
-  <footer>
-    <p>&copy; 2024 Minimercado Yireth - Todos los derechos reservados.</p>
-  </footer>
+
+  <main>
+    <section class="Principal">
+
+      </div>
+
+
+      <div id="listar_productos"></div>
+      </tbody>
+
+      <script>
+
+        listar_productos();
+
+      </script>
+      </div>
+    </section>
+  </main>
+  <script>
+
+  </script>
+
+</body>
+
+<footer>
+  <p>&copy; 2024 Minimercado Yireth - Todos los derechos reservados.</p>
+</footer>
+
 </html>

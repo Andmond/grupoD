@@ -69,7 +69,7 @@ function listar_productos(){
         console.log(response);
         var items = [];
         $.each(response,function(index, producto){
-            items.push("<tr><td>"+producto.id+"</td><td>"+producto.codigo_proveedor +"</td><td>"+producto.codigo_producto+"</td><td>"+producto.producto+"</td> <td>"+producto.precio_costo+"</td>  <td>"+producto.precio_venta+"</td> <td>"+producto.cantidad+"</td> <td>"+producto.cantidad_minima+"</td>  <td><a class='btn btn-success' href='editar.html?id="+producto.id+"'>Editar</a> <a class='btn btn-danger' href='eliminar.html?id="+producto.id+"'>Eliminar</a></td></tr>");
+            items.push("<tr><td>"+producto.id+"</td><td>"+producto.codigo_proveedor +"</td><td>"+producto.codigo_producto+"</td><td>"+producto.producto+"</td> <td>"+producto.precio_costo+"</td>  <td>"+producto.precio_venta+"</td> <td>"+producto.cantidad+"</td> <td>"+producto.cantidad_minima+"</td>  <td><a class='btn btn-primary' href='editar.html?id="+producto.id+"'>Editar</a> <a class='btn btn-danger' href='eliminar.html?id="+producto.id+"'>Eliminar</a></td></tr>");
         });
         $("#listar_productos").html("<table class='table table-hover'><thead><tr><th>ID</th><th>CODIGO PROVEEDOR</th><th>CODIGO PRODUCTO</th><th>PRODUCTO</th><th>PRECIO COSTO</th><th>PRECIO VENTA</th><th>CANTIDAD</th> <th>CANTIDAD MINIMA</th><th colspan='2'>OPCIONES</th></tr></thead><tbody>"+items.join("")+"</tbody></table>");
     };
@@ -160,6 +160,7 @@ console.log(data);
 function nuevo_producto(){
     console.log("llamado a nuevo producto");
     var data = convertirFormDataAJSON($("#formRegistrar"));
+    console.log("Datos que se enviarán al servidor:", JSON.stringify(data)); 
     var success = function (response) {
         console.log(response); 
     

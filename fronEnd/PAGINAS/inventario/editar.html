@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 
+</html>
 <html>
 
 <head>
@@ -9,95 +11,166 @@
   <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
   <script src="../../librerias/jquery-3.7.1.js"></script>
   <title>Editar producto</title>
-  <link rel="stylesheet" href="../../css/styles1.css" />
+
   <script src="../../funciones.js"></script>
   <h1> Minimercado Yireth </h1>
+  <img src="../imagenes/user.jpg" alt="Abrir loginModal" style="cursor: pointer; width: 100px;" data-bs-toggle="modal"
+    data-bs-target="#loginModal"> </div>
 </head>
 
 <body>
-  <div class="user-box">
-    <img src="C:\Users\eimmy\Desktop\html 02\01.jpg" alt="Imagen de Usuario">
-    <span>Nombre de Usuario</span>
-  </div>
+
   <header>
-    <h1>Editar Productos</h1>
+
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="../../index.html">Inicio</a></li>
-      <li><a href="../inventario/inventario.html">Inventario</a></li>
-      <li><a href="../proveedores/proveedores.html">Proveedores</a></li>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="../Usuario/nuevoUsuario.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../inventario/registro.html">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../proveedores/RegistroProveedores.html">Proveedores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Contactenos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    </ul>
-  </nav>
+
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="registro.html">Crear Producto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="inventario.html">Listado Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="editar.html">Editar Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="eliminar.html">eliminar Productos</a>
+        </li>
+      </ul><br>
+      </ul>
+      </nav>
+
+      <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario">
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          </li>
+        </div>
+
+
+        <div class="container mt-5">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                  <h5>Editar Producto</h5>
+                </div>
+                <div class="card-body">
+                  <form action="" id="formEditar">
+
+
+                    <div class="mb-3">
+                      <label for="id" class="form-label">ID del Producto</label>
+                      <input type="number" id="id" name="id" class="form-control" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="codigo_proveedor" class="form-label">Código de Proveedor</label>
+                      <input type="text" id="codigo_proveedor" name="codigo_proveedor" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="codigo_producto" class="form-label">Código de Producto</label>
+                      <input type="number" id="codigo_producto" name="codigo_producto" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="producto" class="form-label">Nombre del Producto</label>
+                      <input type="text" id="producto" name="producto" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="precio_costo" class="form-label">Precio Costo</label>
+                      <input type="number" id="precio_costo" name="precio_costo" step="0.01" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="precio_venta" class="form-label">Precio Venta</label>
+                      <input type="number" id="precio_venta" name="precio_venta" step="0.01" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="cantidad" class="form-label">Cantidad</label>
+                      <input type="number" id="cantidad" name="cantidad" class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="cantidad_minima" class="form-label">Cantidad Mínima</label>
+                      <input type="number" id="cantidad_minima" name="cantidad_minima" step="0.01" class="form-control">
+                    </div>
+
+                    <div>
+                      <button type="button" class="btn btn-primary" onclick="actualizar_producto();">Guardar</button>
+                    </div>
 
 
 
+                  </form>
+                  <script>
+                    var idp = getQueryVariable("id");
 
-  <form action="" id="formEditar">
+                    editar_producto(idp);
 
 
-    <div>
-      <label for="id">ID del Producto</label>
-      <input type="number" id="id" name="id" readonly />
-    </div>
+                  </script>
 
-    <div>
-      <label for="codigo_proveedor">Código de Proveedor</label>
-      <input type="text" id="codigo_proveedor" name="codigo_proveedor" />
-    </div>
-    <div>
-      <label for="codigo_producto">Código de Producto</label>
-      <input type="number" id="codigo_producto" name="codigo_producto" />
-    </div>
+  </body>
 
-    <div>
-      <label for="producto">Nombre del Producto</label>
-      <input type="text" id="producto" name="producto" />
-    </div>
-
-    <div>
-      <label for="precio_costo">Precio Costo</label>
-      <input type="number" id="precio_costo" name="precio_costo" />
-    </div>
-
-    <div>
-      <label for="precio_venta">Precio Venta</label>
-      <input type="number" id="precio_venta" name="precio_venta" />
-    </div>
-
-    <div>
-      <label for="cantidad">Cantidad</label>
-      <input type="number" id="cantidad" name="cantidad" />
-    </div>
-
-    <div>
-      <label for="cantidad_minima">Cantidad Mínima</label>
-      <input type="number" id="cantidad_minima" name="cantidad_minima" />
-    </div>
-
-    
-    <div>
-      <button type="button" class="btn btn-primary" onclick="actualizar_producto();">Guardar</button>
-    </div>
-  
-
-  
-  </form>
-  <script>
-    var idp = getQueryVariable("id");
-    
-    editar_producto(idp);
-    
-    
-  </script>
-
-</body>
-
-<!-- Pie de página -->
-<footer>
-  <p>&copy; 2024 Minimercado Yireth - Todos los derechos reservados.</p>
-</footer>
+  <footer>
+    <p>&copy; 2024 Minimercado Yireth - Todos los derechos reservados.</p>
+  </footer>
 
 </html>
