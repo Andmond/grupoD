@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../librerias/jquery-3.7.1.js"></script>
+  <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
+  <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+  <script src="../../funcionesUsuario.js"></script>
+  <style>
+    .container {
+      font-family: 'Rozha One', serif;
+
+    }
+  </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+        </a>
+      </div>
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="../../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="nuevoUsuario.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../inventario/registro.html">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../proveedores/RegistroProveedores.html">Proveedores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Contactenos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+    
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="venta.html">ventas "beta"</a>
+        </li>
+        
+      </ul><br>
+
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Lista de productos -->
+      <div class="col-md-6">
+        <h4>Productos Disponibles</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Producto 1</td>
+              <td>$10</td>
+              <td><button class="btn btn-success btn-sm" onclick="addToCart('Producto 1', 10)">Agregar</button></td>
+            </tr>
+            <tr>
+              <td>Producto 2</td>
+              <td>$20</td>
+              <td><button class="btn btn-success btn-sm" onclick="addToCart('Producto 2', 20)">Agregar</button></td>
+            </tr>
+            <tr>
+              <td>Producto 3</td>
+              <td>$15</td>
+              <td><button class="btn btn-success btn-sm" onclick="addToCart('Producto 3', 15)">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Carrito de compras -->
+      <div class="col-md-6">
+        <h4>Carrito de Compras</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="cartTable">
+            <tr>
+              <td colspan="4" class="text-center">Carrito vacío</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <h5>Total: $<span id="totalAmount">0</span></h5>
+        <button class="btn btn-primary" onclick="processSale()">Realizar Venta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación de Venta -->
+  <div class="modal fade" id="saleModal" tabindex="-1" aria-labelledby="saleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saleModalLabel">Confirmación de Venta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas completar la venta?</p>
+          <p><strong>Total: $<span id="finalAmount"></span></strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="completeSale()">Confirmar Venta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    // Función para agregar productos al carrito
+    function addToCart(product, price) {
+      const existingProduct = cart.find(item => item.product === product);
+      if (existingProduct) {
+        existingProduct.quantity++;
+        existingProduct.total = existingProduct.quantity * existingProduct.price;
+      } else {
+        cart.push({ product, price, quantity: 1, total: price });
+      }
+      updateCart();
+    }
+
+    // Función para actualizar la vista del carrito
+    function updateCart() {
+      const cartTable = document.getElementById('cartTable');
+      const totalAmount = document.getElementById('totalAmount');
+      cartTable.innerHTML = '';
+      cart.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.product}</td>
+          <td>$${item.price}</td>
+          <td>${item.quantity}</td>
+          <td>$${item.total}</td>
+        `;
+        cartTable.appendChild(row);
+      });
+      total = cart.reduce((sum, item) => sum + item.total, 0);
+      totalAmount.innerText = total;
+    }
+
+    // Función para procesar la venta
+    function processSale() {
+      if (cart.length === 0) {
+        alert('El carrito está vacío');
+        return;
+      }
+      document.getElementById('finalAmount').innerText = total;
+      const saleModal = new bootstrap.Modal(document.getElementById('saleModal'));
+      saleModal.show();
+    }
+
+    // Función para completar la venta
+    function completeSale() {
+      alert('Venta realizada con éxito');
+      cart = [];
+      updateCart();
+      const saleModal = bootstrap.Modal.getInstance(document.getElementById('saleModal'));
+      saleModal.hide();
+    }
+  </script>
+
+</body>
+</html>

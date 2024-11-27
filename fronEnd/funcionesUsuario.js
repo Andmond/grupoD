@@ -174,34 +174,6 @@ function eliminar_usuario(){
 }
 
 
-function buscar_usuarios(){
-    
-    console.log("Ejecutar Buscar usuarios");
-    //var nombre = $("#formBuscar #texto_buscado").val();
-    var data = convertirFormDataAJSON($("#formBuscar"));
-    var success = function (response) {
-        var items = [];
-        $.each(response,function(index, usuario){
-            items.push("<tr><td>"+usuario.id+"</td><td>"+usuario.nombre+"</td><td>"+usuario.precio+"</td><td>"+usuario.vencimiento+"</td> <td>"+usuario.unidadesId.nombre+"</td>  <td>"+usuario.categoriasId.nombre+"</td> <td>"+usuario.cantidad+"</td>   <td><a class='btn btn-success' href='actualizar.html?id="+usuario.id+"'>Editar</a> <a class='btn btn-danger' href='eliminar.html?id="+usuario.id+"'>Eliminar</a></td></tr>");
-        });
-        $("#listar_usuarios").html("<table class='table table-hover'><thead><tr><th>ID</th><th>NOMBRE</th><th>PRECIO</th><th>VENCIMIENTO</th><th>UNIDAD</th><th>CATEGORIA</th><th>CANTIDAD</th><th colspan='2'>OPCIONES</th></tr></thead><tbody>"+items.join("")+"</tbody></table>");
-    };
-
-    $.ajax({
-        type: "PATCH",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        url: url,
-        context: data,
-        data: data,
-        dataType: "json",
-        success: success
-    });
-    
-}
-// Categorias
 
 
 function listar_categorias(){
@@ -252,6 +224,33 @@ function listar_unidades(){
             'Content-Type': 'application/json'
         },
         url: urlU,
+        context: data,
+        data: data,
+        dataType: "json",
+        success: success
+    });
+    
+}
+function buscar_usuarios(){
+    
+    console.log("Ejecutar Buscar usuarios");
+    var nombre = $("#formBuscar #texto_buscado").val();
+    var data = convertirFormDataAJSON($("#formBuscar"));
+    var success = function (response) {
+        var items = [];
+        $.each(response,function(index, producto){
+            items.push( "<tr><td>"+usuario.id+"</td><td>"+usuario.correo+"</td><td>"+usuario.identificacion+"</td><td>"+usuario.nombre+"</td> <td>"+usuario.telefono+"</td>   <td><a class='btn btn-primary' href='editarUsuarios.html?id="+usuario.id+"'>Editar</a> <a class='btn btn-danger' href='eliminarUsuario.html?id="+usuario.id+"'>Eliminar</a></td></tr>");
+        });
+        $("#listar_usuarios").html("<table class='table table-hover'><thead><tr><th>ID</th><th>CORREO</th><th>IDENTIFICACION</th><th>NOMBRE</th><th>TELEFONO</th><th colspan='2'>OPCIONES</th></tr></thead><tbody>"+items.join("")+"</tbody></table>");
+    };
+
+    $.ajax({
+        type: "PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "http://localhost:8081/api/usuario",
         context: data,
         data: data,
         dataType: "json",

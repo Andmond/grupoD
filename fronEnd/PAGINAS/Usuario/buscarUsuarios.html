@@ -1,0 +1,66 @@
+<html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../librerias/jquery-3.7.1.js"></script>
+  <link href="../../librerias/bootstrap-5.3.3/css/bootstrap.css" rel="stylesheet" />
+  <script src="../../librerias/bootstrap-5.3.3/js/bootstrap.js"></script>
+  <script src="../../funcionesUsuario.js"></script>
+  <style>
+    .container {
+      font-family: 'Rozha One', serif;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../imagenes/user.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+    </a>
+  </div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="../../index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="nuevoUsuario.html">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../inventario/registro.html">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../proveedores/RegistroProveedores.html">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contactenos</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">  
+    <div class="row">
+        <div class="col-md-1 text-center"></div>
+        <div class="col-md-10 p-2">
+          <div id="">
+            <table class="table table-hover">
+                <tbody>
+                    <tr><td> <form action="" name="formBuscar" id="formBuscar"><input type="text" id="nombre" name="nombre" class="form-control" onkeyup="buscar_usuarios();"></form></td> <td><button class="btn btn-primary" onclick="buscar_usuarios();">Buscar</button></td></tr>
+                </tbody>    
+            </table>
+          </div>
+           <div id="listar_usuarios"></div>
+            
+
+        </div>
+        <div class="col-md-1 text-center"></div>
+    </div>
+</div>
+</body>
+
+</html>

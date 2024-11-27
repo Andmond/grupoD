@@ -41,10 +41,9 @@ public class UsuariosImp  implements UsuarioInt{
     }
 
 
-    @Override
-    public Object buscar(Object getusuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscar'");
+   @Override
+    public Optional<List<Usuario>> buscar(String texto){
+        return repositorio.findBynombre("%"+texto+"%");
     }
 
 }
